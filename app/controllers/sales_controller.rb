@@ -10,7 +10,7 @@ class SalesController < ApplicationController
       'date-asc' => 'date ASC',
       'date-desc' => 'date DESC'
     }
-    @sales = Sale.order(order_hash[params[:order]] || 'date-desc')
+    @sales = Sale.order(order_hash[params[:order]] || 'date DESC')
     @sales = @sales.page params[:page]
   end
 
