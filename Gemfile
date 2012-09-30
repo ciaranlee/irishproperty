@@ -41,6 +41,7 @@ gem "devise"
 gem "jquery-rails"
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'pg'
+gem 'kaminari'
 
 
 group :development, :test do

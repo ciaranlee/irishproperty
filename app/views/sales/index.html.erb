@@ -4,12 +4,20 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>date</th>
+      <th>
+        <%= order_by_link('date') %>
+      </th>
       <th>address</th>
       <th>postal_code</th>
-      <th>county</th>
-      <th>price</th>
-      <th>full_market_price</th>
+      <th>
+        <%= order_by_link('county') %>
+      </th>
+      <th>
+        <%= order_by_link('price') %>
+      </th>
+      <th>
+        <%= order_by_link('full_market_price') %>
+      </th>
       <th>description</th>
       <th>size_description</th>
     </tr>
@@ -29,4 +37,6 @@
     <% end %>
   </tbody>
 </table>
+
+<%= paginate @sales %>
 
