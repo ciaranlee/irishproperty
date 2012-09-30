@@ -11,6 +11,13 @@ class SalesController < ApplicationController
       'date-desc' => 'date DESC'
     }
     @sales = Sale.order(order_hash[params[:order]] || 'date DESC')
+    @filters = {}
+    [:postal_code, :county, :description, :size_description].each do |attribute|
+      if params[attribute].present?
+        @sales = @sales.where(attribute => params[attribute])
+        @filters[attribute] = params[attribute]
+      end
+    end
     @sales = @sales.page params[:page]
   end
 

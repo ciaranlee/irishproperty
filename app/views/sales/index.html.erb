@@ -1,6 +1,18 @@
 <div class="page-header">
   <h1>Sales</h1>
 </div>
+<%- if @filters.present? -%>
+  <ul>
+    <%- @filters.each do |filter_name, filter_value| -%>
+      <li>
+        <%= filter_name %>
+        -
+        <%= filter_value %>
+        <%= link_to 'remove', params.merge(filter_name => nil) %>
+      </li>
+    <%- end -%>
+  </ul>
+<%- end -%>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -27,12 +39,12 @@
       <tr>
         <td><%= sale.date.strftime("%Y/%m/%d") %></td>
         <td><%= sale.address %></td>
-        <td><%= sale.postal_code %></td>
-        <td><%= sale.county %></td>
+        <td><%= filter_link(sale, :postal_code) %></td>
+        <td><%= filter_link(sale, :county) %></td>
         <td><%= sale.price %></td>
         <td><%= sale.full_market_price %></td>
-        <td><%= sale.description %></td>
-        <td><%= sale.size_description %></td>
+        <td><%= filter_link(sale, :description) %></td>
+        <td><%= filter_link(sale, :size_description) %></td>
       </tr>
     <% end %>
   </tbody>
