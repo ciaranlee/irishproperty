@@ -20,5 +20,7 @@ class CreateSales < ActiveRecord::Migration
     add_index(:sales, :county)
     add_index(:sales, :price)
     add_index(:sales, :full_market_price)
+    add_index(:sales, :description)
+    add_index(:sales, :size_description)
   end
 end

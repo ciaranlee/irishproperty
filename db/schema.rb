@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(:version => 20120930181909) do
 
   add_index "sales", ["county"], :name => "index_sales_on_county"
   add_index "sales", ["date"], :name => "index_sales_on_date"
+  add_index "sales", ["description"], :name => "index_sales_on_description"
   add_index "sales", ["full_market_price"], :name => "index_sales_on_full_market_price"
   add_index "sales", ["import_hash"], :name => "index_sales_on_import_hash", :unique => true
   add_index "sales", ["postal_code"], :name => "index_sales_on_postal_code"
   add_index "sales", ["price"], :name => "index_sales_on_price"
+  add_index "sales", ["size_description"], :name => "index_sales_on_size_description"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
