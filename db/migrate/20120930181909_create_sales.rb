@@ -5,7 +5,6 @@ class CreateSales < ActiveRecord::Migration
       t.string :address
       t.string :postal_code
       t.string :county
-      t.string :price_string
       t.integer :price
       t.boolean :full_market_price
       t.string :description
@@ -16,5 +15,10 @@ class CreateSales < ActiveRecord::Migration
       t.timestamps
     end
     add_index(:sales, :import_hash, :unique => true)
+    add_index(:sales, :date)
+    add_index(:sales, :postal_code)
+    add_index(:sales, :county)
+    add_index(:sales, :price)
+    add_index(:sales, :full_market_price)
   end
 end

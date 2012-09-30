@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20120930181909) do
     t.string   "address"
     t.string   "postal_code"
     t.string   "county"
-    t.string   "price_string"
     t.integer  "price"
     t.boolean  "full_market_price"
     t.string   "description"
@@ -30,7 +29,12 @@ ActiveRecord::Schema.define(:version => 20120930181909) do
     t.datetime "updated_at",        :null => false
   end
 
+  add_index "sales", ["county"], :name => "index_sales_on_county"
+  add_index "sales", ["date"], :name => "index_sales_on_date"
+  add_index "sales", ["full_market_price"], :name => "index_sales_on_full_market_price"
   add_index "sales", ["import_hash"], :name => "index_sales_on_import_hash", :unique => true
+  add_index "sales", ["postal_code"], :name => "index_sales_on_postal_code"
+  add_index "sales", ["price"], :name => "index_sales_on_price"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
