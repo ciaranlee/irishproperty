@@ -1,0 +1,41 @@
+<%- model_class = Sale -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:date) %>:</strong></dt>
+  <dd><%= @sale.date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @sale.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
+  <dd><%= @sale.postal_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:county) %>:</strong></dt>
+  <dd><%= @sale.county %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price_string) %>:</strong></dt>
+  <dd><%= @sale.price_string %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:price) %>:</strong></dt>
+  <dd><%= @sale.price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:full_market_price) %>:</strong></dt>
+  <dd><%= @sale.full_market_price %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:description) %>:</strong></dt>
+  <dd><%= @sale.description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:size_description) %>:</strong></dt>
+  <dd><%= @sale.size_description %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lat) %>:</strong></dt>
+  <dd><%= @sale.lat %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lng) %>:</strong></dt>
+  <dd><%= @sale.lng %></dd>
+</dl>
+
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              sales_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_sale_path(@sale), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              sale_path(@sale),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>

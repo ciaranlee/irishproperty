@@ -1,4 +1,6 @@
 Irishproperty::Application.routes.draw do
+  resources :sales
+
   devise_for :users
 
   # The priority is based upon order of creation:
