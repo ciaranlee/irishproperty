@@ -1,4 +1,6 @@
 class SalesController < ApplicationController
+  caches_action :index
+
   def index
     order_hash = {
       'price-asc' => 'price ASC',
