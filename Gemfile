@@ -43,6 +43,7 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'pg'
 gem 'kaminari'
 gem 'unicorn'
+gem 'dalli'
 
 
 group :development, :test do
