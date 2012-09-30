@@ -12,8 +12,9 @@ class CreateSales < ActiveRecord::Migration
       t.string :size_description
       t.decimal :lat
       t.decimal :lng
-
+      t.string :import_hash, :null => false
       t.timestamps
     end
+    add_index(:sales, :import_hash, :unique => true)
   end
 end

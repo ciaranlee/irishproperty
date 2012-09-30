@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(:version => 20120930181909) do
     t.string   "size_description"
     t.decimal  "lat"
     t.decimal  "lng"
+    t.string   "import_hash",       :null => false
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
   end
+
+  add_index "sales", ["import_hash"], :name => "index_sales_on_import_hash", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

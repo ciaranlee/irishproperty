@@ -24,7 +24,7 @@ describe SalesController do
   # Sale. As you add validations to Sale, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:import_hash => 'abcd'}
   end
 
   # This should return the minimal set of values that should be in the session
@@ -50,55 +50,11 @@ describe SalesController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new sale as @sale" do
-      get :new, {}, valid_session
-      assigns(:sale).should be_a_new(Sale)
-    end
-  end
-
   describe "GET edit" do
     it "assigns the requested sale as @sale" do
       sale = Sale.create! valid_attributes
       get :edit, {:id => sale.to_param}, valid_session
       assigns(:sale).should eq(sale)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Sale" do
-        expect {
-          post :create, {:sale => valid_attributes}, valid_session
-        }.to change(Sale, :count).by(1)
-      end
-
-      it "assigns a newly created sale as @sale" do
-        post :create, {:sale => valid_attributes}, valid_session
-        assigns(:sale).should be_a(Sale)
-        assigns(:sale).should be_persisted
-      end
-
-      it "redirects to the created sale" do
-        post :create, {:sale => valid_attributes}, valid_session
-        response.should redirect_to(Sale.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved sale as @sale" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => {}}, valid_session
-        assigns(:sale).should be_a_new(Sale)
-      end
-
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Sale.any_instance.stub(:save).and_return(false)
-        post :create, {:sale => {}}, valid_session
-        response.should render_template("new")
-      end
     end
   end
 
