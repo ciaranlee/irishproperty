@@ -24,6 +24,10 @@ class SalesController < ApplicationController
         @filters[attribute] = params[attribute]
       end
     end
+    @average = @sales.average(:price).to_i
+    @minimum = @sales.minimum(:price)
+    @maximum = @sales.maximum(:price)
+    @sum = @sales.sum(:price)
     @sales = @sales.page params[:page]
   end
 

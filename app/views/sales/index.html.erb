@@ -4,6 +4,19 @@
   </h1>
 </div>
 
+<%- if @average && @minimum && @maximum && @sum -%>
+  <dl class="dl-horizontal">
+    <dt><strong>average:</strong></dt>
+    <dd>&euro;<%= number_with_delimiter @average %></dd>
+    <dt><strong>min:</strong></dt>
+    <dd>&euro;<%= number_with_delimiter @minimum %></dd>
+    <dt><strong>max:</strong></dt>
+    <dd>&euro;<%= number_with_delimiter @maximum %></dd>
+    <dt><strong>total:</strong></dt>
+    <dd>&euro;<%= number_with_delimiter @sum %></dd>
+  </dl>
+<%- end -%>
+
 <%- unless params[:county] -%>
   <%= form_tag params, :method => 'get', :class => 'autoSubmit' do -%>
     <%= label_tag 'county' %>
