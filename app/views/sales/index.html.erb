@@ -4,40 +4,61 @@
   </h1>
 </div>
 
-<%- if @average && @minimum && @maximum && @sum -%>
-  <dl class="dl-horizontal">
-    <dt><strong>average:</strong></dt>
-    <dd>&euro;<%= number_with_delimiter @average %></dd>
-    <dt><strong>min:</strong></dt>
-    <dd>&euro;<%= number_with_delimiter @minimum %></dd>
-    <dt><strong>max:</strong></dt>
-    <dd>&euro;<%= number_with_delimiter @maximum %></dd>
-    <dt><strong>total:</strong></dt>
-    <dd>&euro;<%= number_with_delimiter @sum %></dd>
-  </dl>
-<%- end -%>
-
-<%- unless params[:county] -%>
-  <%= form_tag params, :method => 'get', :class => 'autoSubmit' do -%>
-    <%= label_tag 'county' %>
-    <%= select_tag "county", options_from_collection_for_select(Sale.select(:county).uniq, "county", "county"), :include_blank => true %>
-  <%- end -%>
-<%- end -%>
-
-
-<%- if @filters.present? -%>
-  <h2>Filters:</h2>
-  <ul>
-    <%- @filters.each do |filter_name, filter_value| -%>
-      <li>
-        <%= filter_name %>
-        -
-        <%= filter_value %>
-        <%= link_to 'remove', params.merge(filter_name => nil) %>
-      </li>
+<div class="row">
+  <div class="span4">
+    <%- if @average && @minimum && @maximum && @sum -%>
+      <dl class="dl-horizontal">
+        <dt><strong>average:</strong></dt>
+        <dd>&euro;<%= number_with_delimiter @average %></dd>
+        <dt><strong>min:</strong></dt>
+        <dd>&euro;<%= number_with_delimiter @minimum %></dd>
+        <dt><strong>max:</strong></dt>
+        <dd>&euro;<%= number_with_delimiter @maximum %></dd>
+        <dt><strong>total:</strong></dt>
+        <dd>&euro;<%= number_with_delimiter @sum %></dd>
+      </dl>
     <%- end -%>
-  </ul>
-<%- end -%>
+  </div>
+
+  <div class="span4">
+    <%= form_tag params, :method => 'get', :class => 'autoSubmit' do -%>
+
+      <%- unless params[:county] -%>
+        <div class="control-group">
+          <%= label_tag 'county', nil, :class => 'control-label' %>
+          <div class="controls">
+            <%= select_tag "county", options_from_collection_for_select(Sale.select(:county).uniq, "county", "county"), :include_blank => true %>
+          </div>
+        </div>
+      <%- end -%>
+
+      <div class="control-group">
+        <%= label_tag 'address', nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :address, params[:address], :class => 'text_field' %>
+        </div>
+      </div>
+
+    <%- end -%>
+  </div>
+
+  <div class="span4">
+    <%- if @filters.present? -%>
+      <h2>Filters:</h2>
+      <ul>
+        <%- @filters.each do |filter_name, filter_value| -%>
+          <li>
+          <%= filter_name %>
+          -
+          <%= filter_value %>
+          <%= link_to 'remove', params.merge(filter_name => nil) %>
+          </li>
+        <%- end -%>
+      </ul>
+    <%- end -%>
+  </div>
+
+</div>
 
 <table class="table table-striped">
   <thead>
