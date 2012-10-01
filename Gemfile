@@ -41,7 +41,7 @@ gem 'pg'
 gem 'kaminari'
 gem 'unicorn'
 gem 'dalli'
-
+gem 'money'
 
 group :development, :test do
   gem 'sqlite3'

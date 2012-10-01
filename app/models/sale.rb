@@ -18,7 +18,7 @@ class Sale < ActiveRecord::Base
         :address => row["Address"],
         :postal_code => row["Postal Code"],
         :county => row["County"],
-        :price => row["Price (\x80)"].match(/(\d+.+)/)[0].gsub(',','').to_i,
+        :price => Money.parse(row["Price (\x80)"]).to_d.to_i,
         :full_market_price => row["Not Full Market Price"].downcase == "no",
         :description => row["Description of Property"],
         :size_description => row["Property Size Description"],
