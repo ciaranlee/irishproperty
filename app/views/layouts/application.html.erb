@@ -13,11 +13,23 @@
   </head>
   <body>
 
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="/">Irish Property Data</a>
+      </div>
+    </div>
+
     <div class="container">
         <div class="row">
          <%= yield %>
         </div>
     </div>
+
+    <footer class="footer">
+    <div class="container">
+      <p>This site contains data from <a href="http://www.propertypriceregister.ie/" target="_blank">The Residential Property Price Register</a>.</p>
+    </div>
+    </footer>
 
     <%= javascript_include_tag "application" %>
 
