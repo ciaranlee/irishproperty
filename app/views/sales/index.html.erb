@@ -51,7 +51,13 @@
     <% @sales.each do |sale| %>
       <tr>
         <td><%= sale.date.strftime("%Y/%m/%d") %></td>
-        <td><%= sale.address %></td>
+        <td>
+          <%- fragments = sale.address.split(',') -%>
+          <%- fragments.each_with_index do |address_fragment, index| -%>
+            <%= address_fragment_link(address_fragment) %>
+            <%= ',' if fragments[index+1] %>
+          <%- end -%>
+        </td>
         <td><%= filter_link(sale, :postal_code) %></td>
         <td><%= filter_link(sale, :county) %></td>
         <td>&euro;<%= number_with_delimiter sale.price %></td>

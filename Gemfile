@@ -42,6 +42,7 @@ gem 'kaminari'
 gem 'unicorn'
 gem 'dalli'
 gem 'money'
+gem 'exceptional'
 
 group :development, :test do
   gem 'sqlite3'
