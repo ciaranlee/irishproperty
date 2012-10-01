@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  #caches_action :index
+  caches_action :index
 
   def index
     order_hash = {
