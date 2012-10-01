@@ -43,6 +43,7 @@ gem 'unicorn'
 gem 'dalli'
 gem 'money'
 gem 'exceptional'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'sqlite3'
