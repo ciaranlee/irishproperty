@@ -17,7 +17,7 @@ class SalesController < ApplicationController
     [:address, :postal_code, :county, :description, :size_description].each do |attribute|
       if params[attribute].present?
         if attribute == :address
-          @sales = @sales.where('address like ?', "%#{params[:address]}%")
+          @sales = @sales.where("address #{'i' if Rails.env.production?}like ?", "%#{params[:address]}%")
         else
           @sales = @sales.where(attribute => params[attribute])
         end
