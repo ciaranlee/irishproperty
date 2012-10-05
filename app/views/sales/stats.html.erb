@@ -10,28 +10,7 @@
     <p>Bear in mind thet these statistics are based off raw data, which contains errors. Also, if you filter down too tightly the statistics become meaningless.</p>
   </div>
 
-  <div class="span4">
-    <%= form_tag params, :method => 'get', :class => 'autoSubmit' do -%>
-
-      <%- unless params[:county] -%>
-        <div class="control-group">
-          <%= label_tag 'county', nil, :class => 'control-label' %>
-          <div class="controls">
-            <%= select_tag "county", options_from_collection_for_select(Sale.select(:county).uniq, "county", "county"), :include_blank => true %>
-          </div>
-        </div>
-      <%- end -%>
-
-      <div class="control-group">
-        <%= label_tag 'address', nil, :class => 'control-label' %>
-        <div class="controls">
-          <%= text_field_tag :address, params[:address], :class => 'text_field' %>
-        </div>
-      </div>
-
-    <%- end -%>
-  </div>
-
+  <%= render :partial => 'filter_form' %>
   <%= render :partial => 'filters', :locals => {:filters => @filters} %>
 
 </div>
@@ -40,13 +19,13 @@
   <thead>
     <tr>
       <th>month</th>
-      <th>transaction_count</th>
+      <th>#sales</th>
+      <th>sum</th>
       <th>average</th>
       <th>median</th>
       <th>minimum</th>
       <th>maximum</th>
       <th>range</th>
-      <th>sum</th>
       <th>standard_deviation</th>
     </tr>
   </thead>
@@ -58,6 +37,9 @@
         </td>
         <td>
           <%= @sales_stats[index][:transaction_count] %>
+        </td>
+        <td>
+          &euro;<%= number_with_delimiter @sales_stats[index][:sum] %>
         </td>
         <td>
           &euro;<%= number_with_delimiter @sales_stats[index][:average] %>
@@ -73,9 +55,6 @@
         </td>
         <td>
           &euro;<%= number_with_delimiter @sales_stats[index][:range] %>
-        </td>
-        <td>
-          &euro;<%= number_with_delimiter @sales_stats[index][:sum] %>
         </td>
         <td>
           &euro;<%= number_with_delimiter @sales_stats[index][:standard_deviation] %>

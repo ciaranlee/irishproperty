@@ -16,8 +16,10 @@
     <div class="navbar">
       <div class="navbar-inner">
         <a class="brand" href="/">Irish Property Data</a>
-        <%= link_to "Sales", sales_path %>
-        <%= link_to "Ststistics", stats_sales_path %>
+        <ul class="nav">
+          <li><%= link_to "Sales", sales_path  %></li>
+          <li><%= link_to "Statistics", stats_sales_path  %></li>
+        </ul>
       </div>
     </div>
 

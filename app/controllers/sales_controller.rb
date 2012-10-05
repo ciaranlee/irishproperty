@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
   caches_action :index, :cache_path => Proc.new { |c| c.params }
+  caches_action :stats, :cache_path => Proc.new { |c| c.params }
 
   def index
     order_hash = {
