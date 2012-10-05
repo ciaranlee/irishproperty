@@ -1,5 +1,9 @@
 Irishproperty::Application.routes.draw do
-  resources :sales
+  resources :sales do
+    collection do
+      get :stats
+    end
+  end
   root :to => 'sales#index'
 
   devise_for :users

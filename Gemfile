@@ -44,6 +44,7 @@ gem 'dalli'
 gem 'money'
 gem 'exceptional'
 gem 'newrelic_rpm'
+gem 'easystats'
 
 group :development, :test do
   gem 'sqlite3'

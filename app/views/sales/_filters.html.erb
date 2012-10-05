@@ -1,0 +1,15 @@
+<div class="span4">
+  <%- if filters.present? -%>
+    <h2>Filters:</h2>
+    <ul>
+      <%- filters.each do |filter_name, filter_value| -%>
+        <li>
+        <%= filter_name %>
+        -
+        <%= filter_value %>
+        <%= link_to 'remove', params.merge(filter_name => nil) %>
+        </li>
+      <%- end -%>
+    </ul>
+  <%- end -%>
+</div>

@@ -1,6 +1,7 @@
 <div class="page-header">
   <h1>
     <%= pluralize @sales.total_count, 'Sale' %>
+    <%= link_to 'stats', params.merge(:action => 'stats') %>
   </h1>
 </div>
 
@@ -23,14 +24,12 @@
   <div class="span4">
     <%= form_tag params, :method => 'get', :class => 'autoSubmit' do -%>
 
-      <%- unless params[:county] -%>
-        <div class="control-group">
-          <%= label_tag 'county', nil, :class => 'control-label' %>
-          <div class="controls">
-            <%= select_tag "county", options_from_collection_for_select(Sale.select(:county).uniq, "county", "county"), :include_blank => true %>
-          </div>
+      <div class="control-group">
+        <%= label_tag 'county', nil, :class => 'control-label' %>
+        <div class="controls">
+          <%= select_tag "county", options_from_collection_for_select(Sale.select(:county).uniq.sort, "county", "county"), :include_blank => true %>
         </div>
-      <%- end -%>
+      </div>
 
       <div class="control-group">
         <%= label_tag 'address', nil, :class => 'control-label' %>
@@ -42,21 +41,7 @@
     <%- end -%>
   </div>
 
-  <div class="span4">
-    <%- if @filters.present? -%>
-      <h2>Filters:</h2>
-      <ul>
-        <%- @filters.each do |filter_name, filter_value| -%>
-          <li>
-          <%= filter_name %>
-          -
-          <%= filter_value %>
-          <%= link_to 'remove', params.merge(filter_name => nil) %>
-          </li>
-        <%- end -%>
-      </ul>
-    <%- end -%>
-  </div>
+  <%= render :partial => 'filters', :locals => {:filters => @filters} %>
 
 </div>
 
