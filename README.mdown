@@ -1,0 +1,5 @@
+A simple interface built on top of the data from [The Residential Property Price Register](http://www.propertypriceregister.ie/).
+
+License
+This software is released under the [MIT license](http://www.opensource.org/licenses/MIT)
+
