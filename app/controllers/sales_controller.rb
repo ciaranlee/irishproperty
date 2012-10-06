@@ -14,6 +14,7 @@ class SalesController < ApplicationController
       'date-desc' => 'date DESC'
     }
     filter_sales
+    set_title('sales')
     @sales = @sales.order(order_hash[params[:order]] || 'date DESC')
     @average = @sales.average(:price).to_i
     @minimum = @sales.minimum(:price)
@@ -24,6 +25,7 @@ class SalesController < ApplicationController
 
   def stats
     filter_sales
+    set_title('statistics')
     @start = Time.parse '2010/01'
     @end = Time.now.at_beginning_of_month
     @months = []
@@ -68,5 +70,11 @@ class SalesController < ApplicationController
         @filters[attribute] = params[attribute]
       end
     end
+  end
+
+  def set_title(begin_with)
+    @title = "#{begin_with} | "
+    filter_string_array = @filters.collect { |arr| "#{arr[0]}: #{arr[1]}" }
+    @title << filter_string_array.join(', ')
   end
 end
