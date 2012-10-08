@@ -15,6 +15,18 @@
 
 </div>
 
+<dl>
+  <%- [:transaction_count, :sum, :average, :median].each do |attribute| -%>
+    <dt>
+      <%= stat_explanation attribute %>
+    </dt>
+
+    <dd>
+      <%= sparkline_image(@sales_stats.collect { |month| month[attribute] }) %>
+    </dd>
+  <%- end -%>
+</dl>
+
 <table class="table table-striped">
   <thead>
     <tr>
