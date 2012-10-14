@@ -13,6 +13,7 @@ class SalesController < ApplicationController
       'date-asc' => 'date ASC',
       'date-desc' => 'date DESC'
     }
+
     filter_sales
     set_title('sales')
     @sales = @sales.order(order_hash[params[:order]] || 'date DESC')
@@ -57,14 +58,21 @@ class SalesController < ApplicationController
     @sale = Sale.find(params[:id])
   end
 
+  def load_counties
+    @county = County.find_by_name(params[:county]) if params[:county]
+    @counties = County.all
+  end
+
   def filter_sales
+    load_counties
     @sales = Sale
+    @sales = @sales.where(:county_id => @county.id) if @county
     @filters = {}
     [:address, :postal_code, :county, :description, :size_description].each do |attribute|
       if params[attribute].present?
         if attribute == :address
           @sales = @sales.where("address #{'i' if Rails.env.production?}like ?", "%#{params[:address]}%")
-        else
+        elsif attribute != :county
           @sales = @sales.where(attribute => params[attribute])
         end
         @filters[attribute] = params[attribute]

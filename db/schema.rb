@@ -11,25 +11,33 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120930181909) do
+ActiveRecord::Schema.define(:version => 20121014213620) do
+
+  create_table "counties", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "counties", ["name"], :name => "index_counties_on_name", :unique => true
 
   create_table "sales", :force => true do |t|
     t.datetime "date"
     t.string   "address"
     t.string   "postal_code"
-    t.string   "county"
     t.integer  "price"
     t.boolean  "full_market_price"
     t.string   "description"
     t.string   "size_description"
     t.decimal  "lat"
     t.decimal  "lng"
-    t.string   "import_hash",       :null => false
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.string   "import_hash",                      :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "county_id",         :default => 0, :null => false
   end
 
-  add_index "sales", ["county"], :name => "index_sales_on_county"
+  add_index "sales", ["county_id"], :name => "index_sales_on_county_id"
   add_index "sales", ["date"], :name => "index_sales_on_date"
   add_index "sales", ["description"], :name => "index_sales_on_description"
   add_index "sales", ["full_market_price"], :name => "index_sales_on_full_market_price"
