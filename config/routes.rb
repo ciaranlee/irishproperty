@@ -4,6 +4,7 @@ Irishproperty::Application.routes.draw do
       get :stats
     end
   end
+  resources :counties
   root :to => 'sales#index'
 
   devise_for :users
