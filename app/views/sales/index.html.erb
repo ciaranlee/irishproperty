@@ -59,7 +59,7 @@
           <%- end -%>
         </td>
         <td><%= filter_link(sale, :postal_code) %></td>
-        <td><%= filter_link(sale, :county_name) %></td>
+        <td><%= link_to sale.county.name, params.merge(:county => sale.county.name) %></td>
         <td>&euro;<%= number_with_delimiter sale.price %></td>
         <td><%= sale.full_market_price %></td>
         <td><%= filter_link(sale, :description) %></td>
