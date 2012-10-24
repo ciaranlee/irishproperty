@@ -38,7 +38,7 @@ class SalesController < ApplicationController
 
   def stats_for(sales)
     start = Time.parse '2010/01'
-    finish = Time.now.at_beginning_of_month
+    finish = (Time.now+1.month).at_beginning_of_month
     months = []
     sales_stats = []
     t = start

@@ -45,7 +45,7 @@
     <%- @months.each_with_index do |month, index| -%>
       <tr>
         <td>
-          <%= month.begin.strftime('%Y-%m') %>
+          <%= month.begin.strftime('%B %Y') %>
         </td>
         <td>
           <%= @sales_stats[index][:transaction_count] %>
